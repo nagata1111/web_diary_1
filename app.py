@@ -57,5 +57,15 @@ def edit(id):
     
     return render_template('edit.html', entry=entry)
 
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete(id):
+    entry = DiaryEntry.query.get_or_404(id)
+    try:
+        db.session.delete(entry)
+        db.session.commit()
+        return redirect('/')
+    except:
+        return '削除中にエラーが発生しました'
+
 if __name__ == '__main__':
     app.run(debug=True) 
