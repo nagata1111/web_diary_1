@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h1 class="card-title">{{ entry.title }}</h1>
+        <p class="text-muted">{{ entry.date_created.strftime('%Y年%m月%d日 %H:%M') }}</p>
+        <hr>
+        <div class="card-text">
+            {{ entry.content|replace('\n', '<br>')|safe }}
+        </div>
+        <hr>
+        <div class="d-flex gap-2">
+            <a href="/" class="btn btn-secondary">戻る</a>
+            <a href="{{ url_for('edit', id=entry.id) }}" class="btn btn-primary">編集</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

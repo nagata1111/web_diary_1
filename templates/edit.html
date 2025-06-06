@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">日記の編集</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="title" class="form-label">タイトル</label>
+        <input type="text" class="form-control" id="title" name="title" value="{{ entry.title }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="content" class="form-label">本文</label>
+        <textarea class="form-control" id="content" name="content" rows="10" required>{{ entry.content }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">更新</button>
+    <a href="{{ url_for('entry', id=entry.id) }}" class="btn btn-secondary">キャンセル</a>
+</form>
+{% endblock %} 

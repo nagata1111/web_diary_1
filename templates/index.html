@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1 class="mb-4">日記一覧</h1>
+<a href="/add" class="btn btn-primary mb-3">新規投稿</a>
+
+{% if entries|length < 1 %}
+<p>まだ投稿がありません。</p>
+{% else %}
+<div class="row">
+    {% for entry in entries %}
+    <div class="col-md-4 mb-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ entry.title }}</h5>
+                <p class="card-text">{{ entry.content[:100] }}{% if entry.content|length > 100 %}...{% endif %}</p>
+                <p class="card-text"><small class="text-muted">{{ entry.date_created.strftime('%Y年%m月%d日') }}</small></p>
+                <a href="/entry/{{ entry.id }}" class="btn btn-info">続きを読む</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %} 
